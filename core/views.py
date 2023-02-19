@@ -10,6 +10,8 @@ from .serializers import TokenAllowanceInputSerializer, TokenAllowanceStatusSeri
 
 @api_view(['POST'])
 def token_allowance_input(request):
+    """Endpoint for Getting and saving token allowance data"""
+
     data = request.data
     serializer = TokenAllowanceInputSerializer(data=data)
 
@@ -22,7 +24,12 @@ def token_allowance_input(request):
 
 @api_view(['GET'])
 def token_allowance_status(request, address):
-    records = TokenAllowance.objects.filter(address=address).order_by('amount')
+    """
+    Endpoint for Getting all the token allowance data on an address
+    :param address(the address who's data is required): string
+    """
+
+    records = TokenAllowance.objects.filter(address=address)
 
     if records:
         serialized_records = TokenAllowanceStatusSerializer(records, many=True)

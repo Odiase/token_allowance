@@ -9,7 +9,9 @@ class TokenAllowance(models.Model):
     address = models.CharField(max_length=100, null=False)
     token_name = models.CharField(max_length=200, null=False)
     amount = models.FloatField(null=False)
-    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-amount"]
 
 
     def __str__(self):

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # env library
 import environ
@@ -32,7 +33,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://*.fly.dev"]
 
 
 # Application definition
@@ -86,11 +88,19 @@ WSGI_APPLICATION = "token_allowance_backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),
+#         'USER': 'postgres',
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default' : dj_database_url.parse(env('DB_URL'))
 }
 
 
