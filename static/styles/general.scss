@@ -1,0 +1,31 @@
+*{
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+html{
+    font-size: 80%;
+    font-family: 'Courier New', Courier, monospace;
+}
+header{
+    width: 100%;
+    padding: 20px;
+    background: rgba(53, 106, 149, 0.687);
+    color: white;
+}
+.all_data{
+    width: 100%;
+    
+    .data{
+        display: flex;
+        padding: 20px;
+        border-bottom: 1px solid rgba(200,200,200, 0.5);
+        align-items: center;
+
+        .address{
+            flex-basis: 50%;
+        }
+    }
+}

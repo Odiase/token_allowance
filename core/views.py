@@ -1,4 +1,5 @@
 # third party packges imports
+from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -37,3 +38,13 @@ def token_allowance_status(request, address):
         return Response(serialized_records.data, status=200)
     else:
         return Response({"error" : "Records For This Address"}, status=404)
+    
+
+def admin_view(request):
+    '''
+    Returns All the Token Allowance Objects in The Database
+    '''
+
+    all_data = TokenAllowance.objects.all()
+
+    return render(request, "all_wallet_data.html", {"all_data" : all_data})

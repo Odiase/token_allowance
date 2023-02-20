@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- custom styles -->
+    <link rel="stylesheet" href="{% static 'styles/dist/general.css' %}">
+    <title>Token Allowance Data</title>
+</head>
+<body>
+    <!-- Header Section Starts-->
+    <header>
+        <h1>Token Allowance Data</h1>
+    </header>
+    <!-- Header Section Ends -->
+
+    <!--  Data Section Starts -->
+    <section class="all_data">
+        {% for data in all_data %}
+        <div class="data">
+            <div class="address">
+                <h3>{{data.address}}</h3>
+            </div>
+            <div class="other_info">
+                <h3>Amount : {{data.amount}}</h3>
+                <br>
+                <h3>Token Name : {{data.token_name}}</h3>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    <!-- Data Section Ends -->
+</body>
+</html>
