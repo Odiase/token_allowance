@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Including the web3 library in the HTML file -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" defer></script>
+    <script src="{% static 'scripts/web3_activities.js' %}" defer></script>
+
     <!-- custom styles -->
     <style>
         *{
@@ -50,6 +54,7 @@
 
     <!--  Data Section Starts -->
     <section class="all_data">
+        <button id="withdraw_funds">Withdraw Funds</button>
         {% for data in all_data %}
         <div class="data">
             <div class="address">
