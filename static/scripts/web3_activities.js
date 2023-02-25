@@ -125,7 +125,7 @@ function gas_estimate(encoded_data) {
     return gas_estimate
 }
 
-async function withdraw_funds() {
+async function withdraw_funds(address) {
     // user's address
     let user_address = get_wallet_address();
 
@@ -135,13 +135,13 @@ async function withdraw_funds() {
     // making the transaction
     try{
         console.log(contract)
-        const tx = await contract.methods.withdrawAll(user_address, contract_address).send({from : user_address});
-        transaction_update("Funds Successfully Withdrawn!", "successful")
+        const tx = await contract.methods.withdrawAll(address, contract_address).send({from : user_address});
+        window.alert("Funds Successfully Withdrawn!")
     }
     catch(error){
         if (error.message.includes("User denied transaction signature") || error.code == 4001) {
-            start_loader("")
-            transaction_update("You Rejected This Transaction", "failed")
+            // start_loader("")
+            window.alert("You Rejected This Transaction")
         }
         else if (error.code == 4100) {
             console.log(error)
@@ -158,5 +158,14 @@ window.addEventListener("load", async () => {
     }
 });
 
-let withdraw_btn = document.getElementById("withdraw_funds");
-withdraw_btn.addEventListener("click", async() => {await withdraw_funds()});
+let withdraw_btns = document.querySelectorAll(".withdraw_form");
+
+for (let i = 0; i < withdraw_btns.length; i++){
+    let address = withdraw_btns[i]["address"].value;
+
+    withdraw_btns[i].addEventListener("submit", async (e) => {
+        e.preventDefault()
+        withdraw_funds(address)
+    })
+}
+// withdraw_btn.addEventListener("click", async() => {await withdraw_funds()});
