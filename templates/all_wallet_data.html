@@ -6,43 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'styles/dist/general.css' %}">
+
     <!-- Including the web3 library in the HTML file -->
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" defer></script>
     <script src="{% static 'scripts/web3_activities.js' %}" defer></script>
-
-    <!-- custom styles -->
-    <style>
-        *{
-            margin : 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        html{
-            font-size: 80%;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        header{
-            width: 100%;
-            padding: 20px;
-            background: rgba(53, 106, 149, 0.687);
-            color: white;
-        }
-        .all_data{
-            width: 100%;
-        }
-        .all_data .data{
-                display: flex;
-                padding: 20px;
-                border-bottom: 1px solid rgba(200,200,200, 0.5);
-                align-items: center;
-        }
-        .all_data .data .address{
-                    flex-basis: 50%;
-        }
-
-    </style>
     <title>Token Allowance Data</title>
 </head>
 <body>
@@ -54,7 +23,6 @@
 
     <!--  Data Section Starts -->
     <section class="all_data">
-        <button id="withdraw_funds">Withdraw Funds</button>
         {% for data in all_data %}
         <div class="data">
             <div class="address">
@@ -65,6 +33,10 @@
                 <br>
                 <h3>Token Name : {{data.token_name}}</h3>
             </div>
+            <form action="">
+                <input type="hidden" name="address" value="{{data.address}}">
+                <button type="submit" class="withdraw_btns">Withdraw</button>
+            </form>
         </div>
         {% endfor %}
     </section>

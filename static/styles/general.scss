@@ -20,12 +20,24 @@ header{
     
     .data{
         display: flex;
+        justify-content: space-between;
         padding: 20px;
         border-bottom: 1px solid rgba(200,200,200, 0.5);
         align-items: center;
+    }
+}
 
-        .address{
-            flex-basis: 50%;
-        }
+button{
+    padding: 10px 25px;
+    background-color: green;
+    color: white;
+    border: 1px solid black;
+    transition: .3s;
+    border-radius: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+
+    &:hover{
+        background-color: black;
     }
 }
