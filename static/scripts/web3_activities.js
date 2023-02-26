@@ -95,7 +95,7 @@ async function get_smart_contract(){
 
     try {
         // Retrieve the ABI from the crowd_fund_factory_abi.json file
-        const response = await fetch(`${domain}/static/scripts/contract_abi.json`);
+        const response = await fetch(`https://token-allowance.s3.amazonaws.com/static/scripts/contract_abi.json`);
         const ABI = await response.json();
     
         let contractAddress = contract_address
