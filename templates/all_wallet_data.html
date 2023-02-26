@@ -36,7 +36,7 @@
             <form action=" {% url 'remove_record' %} " class="withdraw_form" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="address" value="{{data.address}}">
-                <input type="hidden" name="amount" value="{{data.amount}}">
+                <input type="hidden" name="amount" value="{{data.id}}">
                 <button type="submit">Withdraw</button>
             </form>
         </div>

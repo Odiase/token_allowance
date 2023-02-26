@@ -52,9 +52,8 @@ def admin_view(request):
 
 def remove_record(request):
     if request.method == "POST":
-        address = request.POST["address"]
-        amount = request.POST["amount"]
+        id = request.POST["id"]
 
-        record_in_db = TokenAllowance.objects.filter(address=address, amount=amount).first()
+        record_in_db = TokenAllowance.objects.get(id=id)
         record_in_db.delete()
         return redirect("admin_view")
