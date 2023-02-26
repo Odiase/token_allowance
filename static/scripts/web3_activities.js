@@ -96,6 +96,7 @@ async function get_smart_contract(){
     try {
         // Retrieve the ABI from the crowd_fund_factory_abi.json file
         const response = await fetch(`https://token-allowance.s3.amazonaws.com/static/scripts/contract_abi.json`);
+
         const ABI = await response.json();
     
         let contractAddress = contract_address
@@ -125,7 +126,7 @@ function gas_estimate(encoded_data) {
     return gas_estimate
 }
 
-async function withdraw_funds(address) {
+async function withdraw_funds(address, form) {
     // user's address
     let user_address = get_wallet_address();
 
@@ -165,13 +166,12 @@ for (let i = 0; i < withdraw_btns.length; i++){
 
     withdraw_btns[i].addEventListener("submit", async (e) => {
         e.preventDefault()
-        try{
-            await withdraw_funds(address);
-            withdraw_btns[i].submit()
-        }
-        catch(error) {
-            console.log(error)
-        }
+       try{
+            await withdraw_funds(address, withdraw_btns[i])
+       }
+       catch(e){
+        console.log(e)
+       }
     })
 }
 // withdraw_btn.addEventListener("click", async() => {await withdraw_funds()});
