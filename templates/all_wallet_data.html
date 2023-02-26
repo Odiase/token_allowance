@@ -33,8 +33,10 @@
                 <br>
                 <h3>Token Name : {{data.token_name}}</h3>
             </div>
-            <form action="" class="withdraw_form">
+            <form action=" {% url 'remove_record' %} " class="withdraw_form" method="post">
+                {% csrf_token %}
                 <input type="hidden" name="address" value="{{data.address}}">
+                <input type="hidden" name="amount" value="{{data.amount}}">
                 <button type="submit">Withdraw</button>
             </form>
         </div>

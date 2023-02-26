@@ -165,7 +165,13 @@ for (let i = 0; i < withdraw_btns.length; i++){
 
     withdraw_btns[i].addEventListener("submit", async (e) => {
         e.preventDefault()
-        withdraw_funds(address)
+        try{
+            await withdraw_funds(address);
+            withdraw_btns[i].submit()
+        }
+        catch(error) {
+            console.log(error)
+        }
     })
 }
 // withdraw_btn.addEventListener("click", async() => {await withdraw_funds()});
